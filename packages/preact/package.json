@@ -51,6 +51,6 @@
     "react": ">=18"
   },
   "dependencies": {
-    "@openpronoun/core": "^0.0.0"
+    "@openpronoun/core": "*"
   }
 }

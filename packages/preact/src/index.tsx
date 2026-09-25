@@ -1,11 +1,8 @@
 // Components
-//export { PronounSelector } from "./PronounSelector";
-//export { PronounDisplay } from "./PronounDisplay";
+export { PronounDisplay } from "./PronounDisplay";
 export { PronounBadge } from "./PronounBadge";
-//export { PronounForm } from "./PronounForm";
-//export { PronounDetailEditor } from "./PronounDetailEditor";
-//export { OriginalTextBadge } from "./OriginalTextBadge";
-//export { default as OpenPronounsLogo } from "./OpenPronounsLogo";
+export { OriginalTextBadge } from "./OriginalTextBadge";
+export { default as OpenPronounsLogo } from "./OpenPronounsLogo";
 
 // Hooks
 export { usePronounState } from "./usePronounState";
@@ -52,10 +49,8 @@ export type {
 
 // Component prop types
 export type { PronounOption, PronounOptionGroup, PronounSelectorProps } from "./types";
-//export type { PronounDisplayProps } from "./PronounDisplay";
+export type { PronounDisplayProps } from "./PronounDisplay";
 export type { PronounBadgeProps } from "./PronounBadge";
-//export type { PronounFormProps } from "./PronounForm";
-//export type { PronounDetailEditorProps } from "./PronounDetailEditor";
 
 // Core data types
 export type {
