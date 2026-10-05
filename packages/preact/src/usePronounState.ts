@@ -7,7 +7,7 @@ import {
   validatePronounSet,
 } from "./pronounUtils";
 import type { PronounEntry } from "./pronounUtils";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "preact/hooks";
 
 /**
  * Options for the usePronounState hook

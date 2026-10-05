@@ -34,7 +34,6 @@
     "@arethetypeswrong/cli": "latest",
     "@changesets/cli": "latest",
     "@eslint/js": "^10.0.1",
-    "@testing-library/preact": "^3.2.4",
     "eslint": "latest",
     "jsdom": "latest",
     "prettier": "latest",
@@ -44,9 +43,5 @@
     "typescript": "latest",
     "typescript-eslint": "^8.62.0",
     "vitest": "latest"
-  },
-  "dependencies": {
-    "@openpronoun/core": "^0.0.1",
-    "@openpronoun/react": "^0.0.1"
   }
 }

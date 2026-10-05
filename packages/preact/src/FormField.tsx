@@ -92,7 +92,7 @@ export const FormField: FunctionComponent<FormFieldProps> = ({
     onKeyDown: handleKeyDown,
     placeholder,
     ref: inputRef,
-    type: "text",
+    type: "text" as const,
     value,
   };
 

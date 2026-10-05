@@ -36,6 +36,8 @@
     "check:exports": "publint && attw --pack ."
   },
   "devDependencies": {
+    "@testing-library/preact": "^3.2.4",
+    "@preact/preset-vite": "latest",
     "@arethetypeswrong/cli": "latest",
     "eslint": "latest",
     "typescript-eslint": "latest",
@@ -44,13 +46,13 @@
     "tsup": "latest",
     "typescript": "latest",
     "vitest": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "preact": "latest"
   },
   "peerDependencies": {
-    "react": ">=18"
+    "preact": ">=10"
   },
   "dependencies": {
-    "@openpronoun/core": "*"
+    "@openpronoun/core": "*",
+    "clsx": "^2.1.1"
   }
 }
