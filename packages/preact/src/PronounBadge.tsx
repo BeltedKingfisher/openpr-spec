@@ -58,8 +58,7 @@ function formatBadgeText(entry: PronounEntry, fmt: "medium" | "short"): string {
     if (t === PronounType.NONE) return "No pronouns (use name)"; // spec F2
     if (t === PronounType.ASK) return "Ask me";
     if (t === PronounType.UNSPECIFIED) return "Unspecified"; // spec F2
-    if (t === PronounType.CUSTOM)
-      return (entry as { type: "custom"; display: string }).display;
+    if (t === PronounType.CUSTOM) return (entry as { type: "custom"; display: string }).display;
   }
   return formatPronounSet(entry, { format: fmt, includeContext: true });
 }
@@ -85,8 +84,7 @@ export const PronounBadge: FunctionComponent<PronounBadgeProps> = ({
 
   const badgeStyle: CSSProperties = {
     alignItems: "center",
-    backgroundColor:
-      mergedTheme.colors.badgeBackground ?? mergedTheme.colors.secondary,
+    backgroundColor: mergedTheme.colors.badgeBackground ?? mergedTheme.colors.secondary,
     border: "none",
     borderRadius: mergedTheme.badgeStyle?.borderRadius ?? "9999px",
     color: mergedTheme.colors.badgeText ?? mergedTheme.colors.text,
@@ -103,6 +101,17 @@ export const PronounBadge: FunctionComponent<PronounBadgeProps> = ({
     ...(mergedTheme.fontFamily ? { fontFamily: mergedTheme.fontFamily } : {}),
   };
 
+  const innerButtonStyle: CSSProperties = {
+    background: "none",
+    border: "none",
+    borderRadius: "inherit",
+    color: "inherit",
+    cursor: "pointer",
+    font: "inherit",
+    margin: 0,
+    padding: 0,
+  };
+
   const removeButtonStyle: CSSProperties = {
     alignItems: "center",
     background: "none",
@@ -112,20 +121,58 @@ export const PronounBadge: FunctionComponent<PronounBadgeProps> = ({
     cursor: "pointer",
     display: "inline-flex",
     fontSize: mergedTheme.fontSizes.small,
-    height: "16px",
+    height: "24px",
     justifyContent: "center",
     lineHeight: 1,
-    marginLeft: mergedTheme.spacing.small,
+    marginTop: `calc(-1 * ${mergedTheme.spacing.small})`,
+    marginBottom: `calc(-1 * ${mergedTheme.spacing.small})`,
+    marginRight: `calc(-1 * ${mergedTheme.spacing.small})`,
+    marginLeft: 0,
     opacity: 0.6,
     padding: 0,
     transition: "opacity 0.15s ease, background-color 0.15s ease",
-    width: "16px",
+    width: "24px",
   };
 
   const handleRemoveClick = (e: TargetedMouseEvent<HTMLElement>) => {
     e.stopPropagation();
     onRemove?.();
   };
+  const textSpan = (
+    <span className={clsx("pronoun-badge-text", classNames?.text)}>{displayText}</span>
+  );
+
+  if (removable) {
+    return (
+      <span
+        className={clsx("pronoun-badge", className, classNames?.root)}
+        style={{ ...badgeStyle, cursor: "default" }}
+      >
+        {onClick ? (
+          <button
+            aria-label={accessibleLabel}
+            className={clsx("pronoun-badge-text-button", classNames?.text)}
+            onClick={onClick}
+            style={innerButtonStyle}
+            type="button"
+          >
+            {displayText}
+          </button>
+        ) : (
+          textSpan
+        )}
+        <button
+          aria-label={`Remove ${displayText}`}
+          className={clsx("pronoun-badge-remove", classNames?.removeButton)}
+          onClick={handleRemoveClick}
+          style={removeButtonStyle}
+          type="button"
+        >
+          {resolvedIcons.remove}
+        </button>
+      </span>
+    );
+  }
 
   if (onClick) {
     return (
@@ -136,20 +183,7 @@ export const PronounBadge: FunctionComponent<PronounBadgeProps> = ({
         style={badgeStyle}
         type="button"
       >
-        <span className={clsx("pronoun-badge-text", classNames?.text)}>
-          {displayText}
-        </span>
-        {removable && (
-          <button
-            aria-label={`Remove ${displayText}`}
-            className={clsx("pronoun-badge-remove", classNames?.removeButton)}
-            onClick={handleRemoveClick}
-            style={removeButtonStyle}
-            type="button"
-          >
-            {resolvedIcons.remove}
-          </button>
-        )}
+        {textSpan}
       </button>
     );
   }
@@ -160,20 +194,7 @@ export const PronounBadge: FunctionComponent<PronounBadgeProps> = ({
       className={clsx("pronoun-badge", className, classNames?.root)}
       style={badgeStyle}
     >
-      <span className={clsx("pronoun-badge-text", classNames?.text)}>
-        {displayText}
-      </span>
-      {removable && (
-        <button
-          aria-label={`Remove ${displayText}`}
-          className={clsx("pronoun-badge-remove", classNames?.removeButton)}
-          onClick={handleRemoveClick}
-          style={removeButtonStyle}
-          type="button"
-        >
-          {resolvedIcons.remove}
-        </button>
-      )}
+      {textSpan}
     </span>
   );
 };
