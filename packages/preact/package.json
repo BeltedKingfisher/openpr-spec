@@ -46,10 +46,10 @@
     "tsup": "latest",
     "typescript": "latest",
     "vitest": "latest",
-    "preact": "latest"
+    "preact": "^10.11.0"
   },
   "peerDependencies": {
-    "preact": ">=10"
+    "preact": "^10.11.0"
   },
   "dependencies": {
     "@openpronoun/core": "*",

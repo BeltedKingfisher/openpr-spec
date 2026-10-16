@@ -1,12 +1,10 @@
-import type React from "react";
 import type { PronounTheme } from "./theme";
 
 function resolveFocusBoxShadow(theme: PronounTheme): string {
   if (theme.focusStyle?.boxShadow) {
     return theme.focusStyle.boxShadow;
   }
-  const ringColor =
-    theme.colors.focusRing ?? `${theme.colors.focus ?? theme.colors.primary}40`;
+  const ringColor = theme.colors.focusRing ?? `${theme.colors.focus ?? theme.colors.primary}40`;
   return `0 0 0 3px ${ringColor}`;
 }
 
@@ -52,12 +50,10 @@ export function getPronounCSSVars(theme: PronounTheme): React.CSSProperties {
     "--ps-spacing-lg": theme.spacing.large,
     "--ps-btn-radius": theme.buttonStyle?.borderRadius ?? theme.borderRadius,
     "--ps-btn-padding":
-      theme.buttonStyle?.padding ??
-      `${theme.spacing.small} ${theme.spacing.medium}`,
+      theme.buttonStyle?.padding ?? `${theme.spacing.small} ${theme.spacing.medium}`,
     "--ps-btn-font-weight": String(theme.buttonStyle?.fontWeight ?? 500),
     "--ps-btn-font-size": theme.buttonStyle?.fontSize ?? theme.fontSizes.small,
-    "--ps-label-color":
-      theme.labelStyle?.color ?? theme.colors.label ?? theme.colors.text,
+    "--ps-label-color": theme.labelStyle?.color ?? theme.colors.label ?? theme.colors.text,
     "--ps-label-font-size": theme.labelStyle?.fontSize ?? theme.fontSizes.medium,
     "--ps-label-font-weight": String(theme.labelStyle?.fontWeight ?? 500),
     "--ps-focus-outline": theme.focusStyle?.outline ?? "none",
